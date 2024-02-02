@@ -22,6 +22,13 @@ def process_schedule(data):
              [data.get("{}Notes".format(i))]])]
 
 def format_schedule(res):
+    for row in res[:-1]:
+        i = -1
+        for cell in row:
+            i += 1
+            if cell.lower().strip() == "x":
+                row[i] = "";
+
     letters = []
     for row in res[:-1]:
         for cell in row:
@@ -140,7 +147,7 @@ def handle_post():
     if request.method == 'POST':
         username = request.headers['username']
         password = request.headers['password']
-        if username == "pilliam" and password == "TV Timeout":
+        if username == "pilliam" and password == "TV Timeout (Not the real password, nice try!)":
             data = request.data
             process_schedule(data)
             return "Success!"
